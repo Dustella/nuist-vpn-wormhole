@@ -8,7 +8,7 @@ const Result: Component<{ source: string }> = (props) => {
     if (!testUrlValid(source)) {
       return "输入不正确";
     }
-    if (source.startsWith("https://vpn.nuist.edu.cn")) {
+    if (source.startsWith("https://client.vpn.nuist.edu.cn/")) {
       return disassemble(source);
     }
     return assemble(source);

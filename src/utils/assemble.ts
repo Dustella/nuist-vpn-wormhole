@@ -28,9 +28,12 @@ export const assemble = async (sourceUrl: string) => {
 
 export const disassemble = async (url: string) => {
   const source = new URL(url);
+
   const { pathname, search, protocol } = source;
-  const [host, ...path] = pathname.split("/").filter((item) => item);
+  const [_, host, ...path] = pathname.split("/").filter((item) => item);
   const newPath = `/${path.join("/")}`;
-  const newUrl = `https://${await decrypt(host)}${newPath}${search}`;
+  const newUrl = `https://${await decrypt(
+    host.replace("webvpn", "").replace(/\//g, "")
+  )}${newPath}${search}`;
   return newUrl;
 };
